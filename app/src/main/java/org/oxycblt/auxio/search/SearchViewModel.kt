@@ -21,6 +21,7 @@ package org.oxycblt.auxio.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -100,7 +101,7 @@ constructor(
 
         // Searching is time-consuming, so do it in the background.
         L.d("Searching music library for $query")
-        currentSearchJob = viewModelScope.launch {
+        currentSearchJob = viewModelScope.launch(Dispatchers.Default) {
             searchResults.value = searchImpl(library, query).also { yield() }
         }
     }

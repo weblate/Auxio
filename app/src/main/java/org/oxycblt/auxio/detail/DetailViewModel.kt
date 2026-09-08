@@ -21,6 +21,7 @@ package org.oxycblt.auxio.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -418,7 +419,7 @@ constructor(
         val playlist = currentPlaylist.value ?: return
         val editedPlaylist = editedPlaylist.value ?: return
         L.d("Committing playlist edits")
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             musicRepository.rewritePlaylist(playlist, editedPlaylist)
             // TODO: The user could probably press some kind of button if they were fast enough.
             //  Think of a better way to handle this state.

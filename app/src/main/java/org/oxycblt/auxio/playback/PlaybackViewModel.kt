@@ -21,6 +21,7 @@ package org.oxycblt.auxio.playback
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.coroutines.Job
@@ -187,7 +188,7 @@ constructor(
         // Replace the previous position co-routine with a new one that uses the new
         // state information.
         lastPositionJob?.cancel()
-        lastPositionJob = viewModelScope.launch {
+        lastPositionJob = viewModelScope.launch(Dispatchers.Default) {
             while (true) {
                 positionDs.value = progression.calculateElapsedPositionMs().msToDs()
                 // Wait a deci-second for the next position tick.
