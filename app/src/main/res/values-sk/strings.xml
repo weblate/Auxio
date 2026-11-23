@@ -35,8 +35,8 @@
     <string name="lbl_live_group">Naživo</string>
     <string name="lbl_remix_group">Remixy</string>
     <string name="lbl_appears_on">Objavuje sa na</string>
-    <string name="lbl_artist">Umelec</string>
-    <string name="lbl_artists">Umelci</string>
+    <string name="lbl_artist">Interpret</string>
+    <string name="lbl_artists">Interpreti</string>
     <string name="lbl_genre">Žáner</string>
     <string name="lbl_genres">Žánre</string>
     <string name="lbl_playlist">Zoznam skladieb</string>
